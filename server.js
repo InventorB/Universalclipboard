@@ -1,20 +1,28 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 // setup database
 const Database = require('better-sqlite3');
 const db = new Database('db.sqlite');
 
+app.use(cors());
 // id, device-name, url
 db.prepare(`
   CREATE TABLE IF NOT EXISTS urls (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
     DEVICE TEXT,
     URL TEXT
-    INSERT INTO urls (DEVICE, URL) VALUES (Getting-Started', 'https://github.com/InventorB/Universalclipboard/')
   )
 `).run();
 
+const count = db.prepare('SELECT COUNT(*) AS c FROM urls').get().c;
 const insert = db.prepare('INSERT INTO urls (DEVICE, URL) VALUES (?, ?)');
+if (count === 0) {
+  insert.run(
+    'Getting-Started',
+    'https://github.com/InventorB/Universalclipboard/'
+  );
+}
 
 const hostname = '100.64.0.3'; // Replace with your desired IP address
 const port = 3000;
@@ -33,7 +41,7 @@ app.put('/api/submiturl', (req, res) => {
   }
   insert.run(device, req.headers.url);
   console.log(`New URL from ${device}: ${req.headers.url}`);
-  res.send(201);
+  res.sendStatus(201);
 });
 
 app.get('/api/latesturl', (req, res) => {
