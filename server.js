@@ -23,6 +23,18 @@ app.get('/', (req, res) => {
     res.status(404);
     res.send('404: No API here. Did you mean /api/* ?');
 });
+// add an url to the database
+app.put('/api/submiturl', (req, res) => {
+  device = "";
+  if(!req.headers.device || req.headers.device == "") {
+    device = req.ip;
+  } else {
+    device = req.headers.device;
+  }
+  insert.run(device, req.headers.url);
+  console.log(`New URL from ${device}: ${req.headers.url}`);
+  res.send(201);
+});
 
 app.get('/api/latesturl', (req, res) => {
     const latest = db.prepare('SELECT * FROM urls ORDER BY id DESC LIMIT 1').get();
