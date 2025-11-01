@@ -1,14 +1,15 @@
-const { createServer } = require('node:http');
+const express = require('express');
+const app = express();
 
-const hostname = '127.0.0.1';
+const hostname = '100.64.0.3'; // Replace with your desired IP address
 const port = 3000;
 
-const server = createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
+app.get('/', (req, res) => {
+    res.status(404);
+    res.send('404: NO API HERE. Wrong URL?');
 });
 
-server.listen(port, hostname, () => {
+
+app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
