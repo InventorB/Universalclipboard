@@ -47,7 +47,7 @@ app.put('/api/submiturl', (req, res) => {
     device = req.headers.device;
   }
   // check for url header
-  if (!headerUrl || typeof headerUrl !== 'string' || headerUrl.trim() === '') {
+  if (!req.headers.url || typeof req.headers.url !== 'string' || req.headers.url.trim() === '') {
     return res.status(400).send('Missing header: url');
   }
   // now add the data
