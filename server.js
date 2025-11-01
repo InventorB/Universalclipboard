@@ -10,11 +10,11 @@ db.prepare(`
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
     DEVICE TEXT,
     URL TEXT
+    INSERT INTO urls (DEVICE, URL) VALUES (Getting-Started', 'https://github.com/InventorB/Universalclipboard/')
   )
 `).run();
 
 const insert = db.prepare('INSERT INTO urls (DEVICE, URL) VALUES (?, ?)');
-insert.run('Welcome-URL', 'https://github.com/InventorB/Universalclipboard/');
 
 const hostname = '100.64.0.3'; // Replace with your desired IP address
 const port = 3000;
