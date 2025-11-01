@@ -9,6 +9,9 @@ app.get('/', (req, res) => {
     res.send('404: NO API HERE. Wrong URL?');
 });
 
+app.get('/api/latesturl', (req, res) => {
+    res.redirect(301, '/new-route');
+});
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
