@@ -8,6 +8,8 @@ A lightweight Express + SQLite service that lets you quickly send URLs between y
 ## 🚀 Quick Start
 
 1. **Clone and install:**
+2. First install npm
+3. Then:
    ```bash
    git clone <your-repo-url>
    cd <your-repo>
@@ -15,7 +17,7 @@ A lightweight Express + SQLite service that lets you quickly send URLs between y
    node server.js
    ```
 
-2. The server will print something like:
+4. The server will print something like:
    ```
    Server running at http://0.0.0.0:3000/
    ```
